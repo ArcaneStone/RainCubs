@@ -589,7 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cubePrefab: {fileID: 332280326}
   _spawnArea: {fileID: 1933897445}
-  _poolSize: 20
+  _poolSize: 10
   _spawnInterval: 2
   _minLifeTime: 2
   _maxLifeTime: 5
