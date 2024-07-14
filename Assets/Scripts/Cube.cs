@@ -11,6 +11,7 @@ public class Cube : MonoBehaviour
     private Renderer _renderer;
     private bool _hasChangedColor = false;
     private bool _destroyTimerStarted = false;
+    private Spawner _spawner;
 
     public void SetColor(Color color)
     {
@@ -41,6 +42,7 @@ public class Cube : MonoBehaviour
 
     private IEnumerator DestroyAfterTime(float time)
     {
-        yield return new WaitForSeconds(time);  
+        yield return new WaitForSeconds(time);
+        _spawner.ReturnCubeToPool(this);
     }
 }
