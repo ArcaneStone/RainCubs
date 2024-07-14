@@ -19,11 +19,6 @@ public class Spawner : MonoBehaviour
 
     private float _spread = 15f;
 
-    public void ReturnCubeToPool(Cube cube)
-    {
-        _cubePool.Release(cube);
-    }
-
     private void Awake()
     {
         _cubePool = new ObjectPool<Cube>(
@@ -33,7 +28,7 @@ public class Spawner : MonoBehaviour
             cube => Destroy(cube.gameObject),
             false,
             _poolSize
-        );           
+        );
     }
 
     private void Update()
@@ -44,6 +39,16 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public void ReturnCubeToPool(Cube cube)
+    {
+        _cubePool.Release(cube);
+    }
+
+    public void SetSpawner(Cube cube)
+    {
+        cube.SetSpawner(this);
+    }
+
     private void Spawn()
     {
         Cube cube = _cubePool.Get();
@@ -52,6 +57,7 @@ public class Spawner : MonoBehaviour
                                                            _spawnArea.position.y,
                                               Random.Range(_spawnArea.position.z - _spread, _spawnArea.position.z + _spread));
 
+        SetSpawner(cube);
         cube.SetColor(_cubeColor);
     }
 }
